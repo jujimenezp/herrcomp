@@ -12,8 +12,8 @@ int main(void){
     
     //como x va de 0 a 1 en saltos de 0.01 se hacen 101 iteraciones
     for(int n=0; n<=100; n++){
-        f = 5.0-sqrt(25+x*x);             //formula original
-        fmod = -(x*x)/(5.0+sqrt(25+x*x)); //formula modificada con racionalizacion
+        f = 5.0-sqrt(25.0+x*x);             //formula original
+        fmod = -(x*x)/(5.0+sqrt(25.0+x*x)); //formula modificada con racionalizacion
         
         std::cout << x
                   << "\t" << f
@@ -21,6 +21,5 @@ int main(void){
                   << "\n";
         x += 0.01;
     }
-    
     return 0;
 }
