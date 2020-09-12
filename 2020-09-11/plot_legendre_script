@@ -1,0 +1,1 @@
+plot 'datos.txt' using 2:3 w lp
