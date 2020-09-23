@@ -2,6 +2,7 @@
 # @: target
 # ^: todas las dependencias
 # <: la primera dependencia
+# %: Cualquier archivo que otro target llama
 
 CXX = g++
 CXXFLAGS = -g
