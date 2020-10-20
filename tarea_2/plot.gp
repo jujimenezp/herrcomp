@@ -1,4 +1,5 @@
 set grid
+set title 'Con optimizacion'
 set xlabel 'N'
 set ylabel 'time (s)'
 f(x) = A*x**B
