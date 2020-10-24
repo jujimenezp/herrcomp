@@ -26,7 +26,13 @@ void compute_force(Particle & body)
     body.Fy -= 1.9876*body.Vy;
   }
 
-  //force with right wall
+  // force with right wall
+  double LX = 2.01;
+  delta = body.Rx + body.rad - LX;
+  if (delta > 0) {
+    body.Fx -= K*delta;
+    body.Fx -= 0.2*body.Vx;
+  }
 }
 
 void start_integration(Particle & body, const double & dt)
