@@ -1,14 +1,14 @@
 #include "md-simul.h"
 
-#include "md-simul.h"
-
 void initial_conditions(Particle & body)
 {
   body.Ry = 1.6598;
-  body.Vx = 0.23698;
+  body.Vx = 0.53698;
+  body.Vy = 0.26454;
+  body.Vz = 0.3345;
 
   body.rad = 0.235;
-  body.mass = 0.29698;
+  body.mass = 0.39698;
 }
 
 void compute_force(Particle & body)
@@ -26,12 +26,32 @@ void compute_force(Particle & body)
     body.Fy -= 1.9876*body.Vy;
   }
 
-  // force with right wall
-  double LX = 2.01;
-  delta = body.Rx + body.rad - LX;
+  // force with right wall x axis
+  delta = fabs(body.Rx) + body.rad - fabs(LXr);
   if (delta > 0) {
     body.Fx -= K*delta;
     body.Fx -= 0.2*body.Vx;
+  }
+
+  // force with left wall x axis
+  delta = fabs(body.Rx) + body.rad - fabs(LXl);
+  if (delta > 0) {
+    body.Fx += K*delta;
+    body.Fx -= 0.2*body.Vx;
+  }
+
+  // force with right wall z axis
+  delta = fabs(body.Rz) + body.rad - fabs(LZr);
+  if (delta > 0) {
+    body.Fz -= K*delta;
+    body.Fz -= 0.2*body.Vz;
+  }
+
+  // force with left wall z axis
+  delta = fabs(body.Rz) + body.rad - fabs(LZl);
+  if (delta > 0) {
+    body.Fz += K*delta;
+    body.Fz -= 0.2*body.Vz;
   }
 }
 
