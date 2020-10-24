@@ -3,9 +3,9 @@
 void initial_conditions(Particle & body)
 {
   body.Ry = 1.6598;
-  body.Vx = 1.83698;
-  body.Vy = 0.56454;
-  body.Vz = 1.1345;
+  body.Vx = 5.83698;
+  body.Vy = 10.56454;
+  body.Vz = 6.1345;
 
   body.rad = 0.235;
   body.mass = 0.39698;
@@ -24,6 +24,13 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fy += K*delta;
     body.Fy -= 1.9876*body.Vy;
+  }
+
+   // force with ceiling
+  delta = body.Ry + body.rad - LY;
+  if (delta > 0) {
+    body.Fy -= K*delta;
+    body.Fy -= 0.2*body.Vy;
   }
 
   // force with right wall x axis

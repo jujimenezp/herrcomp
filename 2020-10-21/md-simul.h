@@ -9,6 +9,7 @@ const double G = -9.81;
 const int NSTEPS = 1000;
 const double DT = 0.01;
 const double K = 253.57;
+const double LY = 3.0;
 const double LXr = 2.01;
 const double LXl = -1.5;
 const double LZr = 2.01;

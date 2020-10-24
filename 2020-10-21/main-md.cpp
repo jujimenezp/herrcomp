@@ -19,13 +19,13 @@ int main(void)
     time_integration(ball, DT);
     compute_force(ball);
     //print(ball, istep*DT);
-    //if(istep%10 == 0){
+    if(istep%10 == 0){
       fout  << ball.Rx << ", "
             << ball.Ry << ", "
             << ball.Rz << ", "
             << ball.mass << ", "
             << ball.rad << "\n";
-    //}
+    }
   }
 
   return 0;
