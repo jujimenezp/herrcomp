@@ -3,9 +3,9 @@
 void initial_conditions(Particle & body)
 {
   body.Ry = 1.6598;
-  body.Vx = 0.53698;
-  body.Vy = 0.26454;
-  body.Vz = 0.3345;
+  body.Vx = 1.83698;
+  body.Vy = 0.56454;
+  body.Vz = 1.1345;
 
   body.rad = 0.235;
   body.mass = 0.39698;
@@ -27,28 +27,28 @@ void compute_force(Particle & body)
   }
 
   // force with right wall x axis
-  delta = fabs(body.Rx) + body.rad - fabs(LXr);
+  delta = body.Rx + body.rad - LXr;
   if (delta > 0) {
     body.Fx -= K*delta;
     body.Fx -= 0.2*body.Vx;
   }
 
   // force with left wall x axis
-  delta = fabs(body.Rx) + body.rad - fabs(LXl);
+  delta = -body.Rx + body.rad + LXl;
   if (delta > 0) {
     body.Fx += K*delta;
     body.Fx -= 0.2*body.Vx;
   }
 
   // force with right wall z axis
-  delta = fabs(body.Rz) + body.rad - fabs(LZr);
+  delta = body.Rz + body.rad - LZr;
   if (delta > 0) {
     body.Fz -= K*delta;
     body.Fz -= 0.2*body.Vz;
   }
 
   // force with left wall z axis
-  delta = fabs(body.Rz) + body.rad - fabs(LZl);
+  delta = -body.Rz + body.rad + LZl;
   if (delta > 0) {
     body.Fz += K*delta;
     body.Fz -= 0.2*body.Vz;

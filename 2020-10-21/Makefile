@@ -5,6 +5,8 @@ OBJECTS=main-md.o md-simul.o
 CXXFLAGS=-O2 -g -std=c++14
 
 main-md.x: $(OBJECTS) particle.h
+	rm -r post
+	mkdir post
 	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@
 
 %.o: %.cpp %.h
