@@ -14,12 +14,12 @@ int main(void)
 
   // evolve
   for(int istep = 0; istep < NSTEPS; ++istep) {
-    std::string fname = "post/datos-"+std::to_string(istep)+".csv";
-    std::ofstream fout(fname);
     time_integration(ball, DT);
     compute_force(ball);
     //print(ball, istep*DT);
     if(istep%10 == 0){
+      std::string fname = "post/datos-"+std::to_string(istep/10)+".csv";
+      std::ofstream fout(fname);
       fout  << ball.Rx << ", "
             << ball.Ry << ", "
             << ball.Rz << ", "
