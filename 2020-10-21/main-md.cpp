@@ -17,8 +17,8 @@ int main(void)
     time_integration(ball, DT);
     compute_force(ball);
     //print(ball, istep*DT);
-    if(istep%10 == 0){
-      std::string fname = "post/datos-"+std::to_string(istep/10)+".csv";
+    if(istep%2 == 0){
+      std::string fname = "post/datos-"+std::to_string(istep/2)+".csv";
       std::ofstream fout(fname);
       fout  << ball.Rx << ", "
             << ball.Ry << ", "
