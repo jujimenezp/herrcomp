@@ -11,10 +11,13 @@ void initial_conditions(Particle & body)
   body.mass = 0.39698;
 }
 
-void compute_force(Particle & body)
+void compute_force(Particle & body, double & Eelas)
 {
   // reset force
   body.Fx = body.Fy = body.Fz = 0.0;
+
+  // reset elastic energy
+  Eelas = 0.0;
 
   // gravitational force
   body.Fy += body.mass*G;
@@ -24,6 +27,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fy += K*delta;
     body.Fy -= 1.9876*body.Vy;
+    Eelas += K*delta*delta/2;
   }
 
    // force with ceiling
@@ -31,6 +35,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fy -= K*delta;
     body.Fy -= 0.2*body.Vy;
+    Eelas += K*delta*delta/2;
   }
 
   // force with right wall x axis
@@ -38,6 +43,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fx -= K*delta;
     body.Fx -= 0.2*body.Vx;
+    Eelas += K*delta*delta/2;
   }
 
   // force with left wall x axis
@@ -45,6 +51,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fx += K*delta;
     body.Fx -= 0.2*body.Vx;
+    Eelas += K*delta*delta/2;
   }
 
   // force with right wall z axis
@@ -52,6 +59,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fz -= K*delta;
     body.Fz -= 0.2*body.Vz;
+    Eelas += K*delta*delta/2;
   }
 
   // force with left wall z axis
@@ -59,6 +67,7 @@ void compute_force(Particle & body)
   if (delta > 0) {
     body.Fz += K*delta;
     body.Fz -= 0.2*body.Vz;
+    Eelas += K*delta*delta/2;
   }
 }
 
@@ -79,6 +88,22 @@ void start_integration(Particle & body, const double & dt)
   body.Ry += body.Vy*dt;
   body.Rz += body.Vz*dt;
 }
+
+double energy(Particle body)
+{
+  //Reinicar E
+  double E = 0.0;
+
+  //Potencial gravitacional
+  E += body.Ry*body.mass*fabs(G);
+
+  //Energia cinetica
+  E += body.mass*(body.Vx*body.Vx+body.Vy*body.Vy+body.Vz*body.Vz)/2;
+
+  return E;
+
+}
+  
 
 void print(Particle & body, double time)
 {

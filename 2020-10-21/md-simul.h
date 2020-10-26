@@ -17,9 +17,10 @@ const double LZl = -1.5;
 
 // function declarations
 void initial_conditions(Particle & body);
-void compute_force(Particle & body);
+void compute_force(Particle & body, double & Eelas);
 void time_integration(Particle & body, const double & dt);
 void start_integration(Particle & body, const double & dt);
 void print(Particle & body, double time);
+double energy(Particle body);
 
 #endif // __MD_SIMUL_H_

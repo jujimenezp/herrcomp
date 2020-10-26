@@ -7,15 +7,17 @@ int main(void)
   Particle ball;
 
   // start system
+  double E = 0.0, Eelas = 0.0;
   initial_conditions(ball);
-  compute_force(ball);
+  compute_force(ball, Eelas);
   start_integration(ball, DT);
   print(ball, 0.0);
 
   // evolve
   for(int istep = 0; istep < NSTEPS; ++istep) {
     time_integration(ball, DT);
-    compute_force(ball);
+    compute_force(ball, Eelas);
+    E = energy(ball)+Eelas;
     //print(ball, istep*DT);
     if(istep%2 == 0){
       std::string fname = "post/datos-"+std::to_string(istep/2)+".csv";
@@ -26,6 +28,8 @@ int main(void)
             << ball.mass << ", "
             << ball.rad << "\n";
     }
+    std::cout << istep << "\t"
+              << E << "\n";
   }
 
   return 0;
