@@ -1,3 +1,6 @@
+//Integrantes:
+//Julian David Jimenez Paz
+//Felipe Gomez Lozada
 #include "md-simul.h"
 #include <string>
 #include <fstream>
