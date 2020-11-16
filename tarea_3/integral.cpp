@@ -10,7 +10,7 @@ double integral(int N, double delta, int NTH);
 int main(int argc, char **argv){
     const int NTH = std::atoi(argv[1]);
     
-    int N = 100000000;
+    int N = 1000000;
     double I=0.0;
     double delta = 10.0/N;
 
@@ -32,11 +32,10 @@ void print_elapsed(auto start, auto end){
 double integral(int N, double delta, int NTH){
     double In = 0.0, x = 0.0;
 #pragma omp parallel for num_threads (NTH)
-    {
-        for(int ii = 0; ii <= N; ++ii){
-            x = ii*delta;
-            In += x*x*delta;
-        }
+    for(int ii = 0; ii <= N; ++ii){
+        x = ii*delta;
+        In += x*x*delta;
     }
+    
     return In;
 }
