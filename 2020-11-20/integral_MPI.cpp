@@ -17,7 +17,11 @@ int main(int argc, char **argv)
 
     const int NSlocal = N/nproc;
 
+    double start = MPI_Wtime();
     integral(NSlocal, pid, nproc, N);
+    double end = MPI_Wtime();
+
+    if(pid == 0) std::cout << end-start << "\n";
     
     MPI_Finalize();
     
